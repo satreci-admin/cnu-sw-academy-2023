@@ -30,7 +30,7 @@ public class WorkSpecification {
     @JoinColumn(name = "robot_id", referencedColumnName = "id")
     private Robot robot;
 
-    @OneToMany(mappedBy = "task_details", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "workSpecification", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TaskDetails> taskDetails;
 
     @ManyToOne

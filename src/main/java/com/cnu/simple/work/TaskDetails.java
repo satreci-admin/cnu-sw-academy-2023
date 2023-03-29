@@ -19,10 +19,6 @@ public abstract class TaskDetails {
     @Column(name = "id", nullable = false, unique = true, columnDefinition = "BINARY(16)")
     private UUID id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "task_type", nullable = false)
-    private TaskType taskType;
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "work_spec_id", referencedColumnName = "id")
     private WorkSpecification workSpecification;
