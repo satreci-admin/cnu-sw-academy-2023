@@ -2,6 +2,7 @@ package com.cnu.simple.work;
 
 import com.cnu.simple.member.Member;
 import com.cnu.simple.robot.Robot;
+import com.cnu.simple.work.deprecated.TaskDetails;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
