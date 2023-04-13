@@ -2,21 +2,27 @@ package com.cnu.simple.work;
 
 import com.cnu.simple.member.Member;
 import com.cnu.simple.robot.Robot;
-import com.cnu.simple.work.deprecated.TaskDetails;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.List;
 import java.util.UUID;
 
+@Builder
+@Getter
 @Entity
+@Table(name = "work_specification")
+@NoArgsConstructor
+@AllArgsConstructor
 public class WorkSpecification {
 
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, unique = true, columnDefinition = "BINARY(16)")
-    private UUID id;
+    private Long id;
 
     @Column(name = "name", nullable = false, length = 20)
     private String name;
@@ -27,16 +33,15 @@ public class WorkSpecification {
     @Column(name = "memo", nullable = true)
     private String memo;
 
+    @Column(name="script", nullable = false)
+    private String script;
+
     @ManyToOne
     @JoinColumn(name = "robot_id", referencedColumnName = "id")
     private Robot robot;
 
-    @OneToMany(mappedBy = "workSpecification", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TaskDetails> taskDetails;
-
     @ManyToOne
     @JoinColumn(name = "member_id", referencedColumnName = "id")
     private Member member;
-
 
 }

@@ -6,8 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WorkSpecificationRepository extends JpaRepository<WorkSpecification, Long> {
-
-
-
-
 }
