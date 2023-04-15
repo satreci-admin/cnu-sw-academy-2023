@@ -1,5 +1,5 @@
 import React, { useState, memo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import styled from "styled-components";
 
@@ -36,7 +36,8 @@ function Sidebars() {
     { name: "사용자 관리", path: "/member" },
   ];
 
-  const [click, setClick] = useState("/robot");
+  const { pathname } = useLocation();
+  const [click, setClick] = useState(pathname);
 
   return (
     <SideBarWrapper>
