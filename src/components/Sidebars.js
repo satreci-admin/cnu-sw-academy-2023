@@ -1,4 +1,4 @@
-import React, { useState, memo } from "react";
+import React, { useState, memo, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import styled from "styled-components";
@@ -39,6 +39,10 @@ function Sidebars() {
   const { pathname } = useLocation();
   const [click, setClick] = useState(pathname);
 
+  const handleClick = useCallback((path) => {
+    setClick(path);
+  }, []);
+
   return (
     <SideBarWrapper>
       <Sidebar>
@@ -49,7 +53,7 @@ function Sidebars() {
               component={<Link to={menu.path} />}
               key={idx}
               active={menu.path === click ? "true" : "false"}
-              onClick={() => setClick(menu.path)}
+              onClick={() => handleClick(menu.path)}
             >
               {menu.name}
             </MemoStyledLink>
