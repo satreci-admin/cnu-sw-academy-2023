@@ -37,7 +37,7 @@ function Sidebars() {
   ];
 
   const { pathname } = useLocation();
-  const [click, setClick] = useState(pathname);
+  const [click, setClick] = useState(pathname === "/" ? "/robot" : pathname);
 
   const handleClick = useCallback((path) => {
     setClick(path);
