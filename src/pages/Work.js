@@ -1,7 +1,8 @@
 import React from "react";
+import MainContentWrapper from "../components/MainContentWrapper";
 
 function Work() {
-  return <div>Work</div>;
+  return <MainContentWrapper>Work</MainContentWrapper>;
 }
 
 export default Work;

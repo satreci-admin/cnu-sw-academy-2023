@@ -1,7 +1,7 @@
 import React from "react";
-
+import MainContentWrapper from "../components/MainContentWrapper";
 function Member() {
-  return <div>Member</div>;
+  return <MainContentWrapper>member</MainContentWrapper>;
 }
 
 export default Member;

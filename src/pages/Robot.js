@@ -1,7 +1,8 @@
 import React from "react";
+import MainContentWrapper from "../components/MainContentWrapper";
 
 function Robot() {
-  return <div>Robot</div>;
+  return <MainContentWrapper>Robot</MainContentWrapper>;
 }
 
 export default Robot;
