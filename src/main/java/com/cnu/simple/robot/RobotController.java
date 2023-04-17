@@ -16,19 +16,19 @@ public class RobotController {
 
     @PostMapping
     public ResponseEntity<Robot> createRobot(@RequestBody RobotRequest robotRequest) {
-        Robot createdRobot = robotService.createPost(robotRequest);
+        Robot createdRobot = robotService.createRobot(robotRequest);
         return new ResponseEntity<>(createdRobot, HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<Robot>> getRobots() {
-        List<Robot> robots = robotService.getPosts();
+        List<Robot> robots = robotService.getRobots();
         return ResponseEntity.ok(robots);
     }
 
     @GetMapping("/{robotId}")
     public ResponseEntity<Robot> getRobot(@PathVariable("robotId") Integer robotId) {
-        Optional<Robot> robot = robotService.getPost(robotId);
+        Optional<Robot> robot = robotService.getRobot(robotId);
         if (robot.isPresent()) {
             return ResponseEntity.ok(robot.get());
         } else {
@@ -39,7 +39,7 @@ public class RobotController {
     @PutMapping("/{robotId}")
     public ResponseEntity<Robot> updateRobot(@PathVariable("robotId")Integer robotId,
                                              @RequestBody RobotRequest robotRequest) {
-        Optional<Robot> updatedRobot = robotService.updatePost(robotId, robotRequest);
+        Optional<Robot> updatedRobot = robotService.updateRobot(robotId, robotRequest);
         if (updatedRobot.isPresent()) {
             return ResponseEntity.ok(updatedRobot.get());
         } else {
@@ -49,7 +49,7 @@ public class RobotController {
 
     @DeleteMapping("/{robotId}")
     public ResponseEntity<Void> deleteRobot(@PathVariable("robotId") Integer robotId) {
-        robotService.deletePost(robotId);
+        robotService.deleteRobot(robotId);
         return ResponseEntity.noContent().build();
     }
 

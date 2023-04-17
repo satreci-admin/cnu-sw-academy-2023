@@ -14,19 +14,19 @@ import java.util.Optional;
 public class RobotService {
     private final RobotRepository robotRepository;
 
-    public Robot createPost(RobotRequest robotRequest) {
+    public Robot createRobot(RobotRequest robotRequest) {
         return robotRepository.save(robotRequest.toEntity());
     }
 
-    public List<Robot> getPosts() {
+    public List<Robot> getRobots() {
         return robotRepository.findAll();
     }
 
-    public Optional<Robot> getPost(Integer postId) {
-        return robotRepository.findById(postId);
+    public Optional<Robot> getRobot(Integer RobotId) {
+        return robotRepository.findById(RobotId);
     }
 
-    public Optional<Robot> updatePost(Integer robotId, RobotRequest robotRequest) {
+    public Optional<Robot> updateRobot(Integer robotId, RobotRequest robotRequest) {
         return robotRepository.findById(robotId)
                 .map(robot -> {
                     robot.setName(robotRequest.getName());
@@ -40,8 +40,8 @@ public class RobotService {
                 });
     }
 
-    public void deletePost(Integer postId) {
-        robotRepository.findById(postId)
+    public void deleteRobot(Integer RobotId) {
+        robotRepository.findById(RobotId)
                 .ifPresent(robotRepository::delete);
     }
 
