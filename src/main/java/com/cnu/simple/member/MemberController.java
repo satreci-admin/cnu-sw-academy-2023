@@ -21,6 +21,13 @@ public class MemberController {
         return new ResponseEntity<>(addMember, HttpStatus.CREATED);
     }
 
+    @GetMapping()
+    public ResponseEntity<List<Member>> listMember(@PathVariable Long id) {
+        List<Member> listMember = memberService.findMember();
+        Optional<Member> oneMember = memberService.findOne(id);
+        return ResponseEntity.ok(listMember);
+    }
+
 
 
 }
