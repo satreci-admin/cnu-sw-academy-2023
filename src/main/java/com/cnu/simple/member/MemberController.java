@@ -35,6 +35,13 @@ public class MemberController {
         return ResponseEntity.ok(updateMember);
     }
 
+    @DeleteMapping()
+    public ResponseEntity<Member> deleteMember(@PathVariable Long id) {
+        memberService.deleteMember(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
 
 
 }

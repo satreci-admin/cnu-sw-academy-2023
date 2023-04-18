@@ -60,6 +60,10 @@ public class MemberService {
         return memberRepository.save(updated);
     }
 
+    public void deleteMember(Long id) {
+        memberRepository.deleteById(id);
+    }
+
 }
 
 
