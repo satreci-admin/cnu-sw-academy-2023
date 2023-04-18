@@ -28,6 +28,13 @@ public class MemberController {
         return ResponseEntity.ok(listMember);
     }
 
+    @PutMapping()
+    public ResponseEntity<Member> updateMember(@PathVariable Long id,
+                                               @RequestBody MemberRequestDto memberRequestDto) {
+        Member updateMember = memberService.updateMember(id, memberRequestDto);
+        return ResponseEntity.ok(updateMember);
+    }
+
 
 
 }

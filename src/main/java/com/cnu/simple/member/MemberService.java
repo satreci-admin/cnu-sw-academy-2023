@@ -43,6 +43,22 @@ public class MemberService {
         return memberRepository.findById(id);
     }
 
+    public Member updateMember(Long id, MemberRequestDto memberRequestDto) {
+        Member member = memberRepository
+                .findById(id)
+                .orElseThrow(() -> new MemberNotFoundException("해당 id의 회원이 없습니다."));
+        Member updated = memberRepository.save(
+                Member.builder()
+                        .id(id)
+                        .name(memberRequestDto.getName())
+                        .email(memberRequestDto.getEmail())
+                        .password(memberRequestDto.getPassword())
+                        .workSpecification(memberRequestDto.getWorkSpecifications())
+                        .build()
+        );
+
+        return memberRepository.save(updated);
+    }
 
 }
 
