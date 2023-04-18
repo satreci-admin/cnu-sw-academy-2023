@@ -65,14 +65,3 @@ public class MemberService {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-

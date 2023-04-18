@@ -18,6 +18,4 @@ public class MemberListResponseDto {
     private String email;
     private String password;
     private List<WorkSpecification> workSpecifications;
-
-
 }
