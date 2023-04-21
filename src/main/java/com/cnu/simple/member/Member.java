@@ -18,7 +18,7 @@ public class Member {
     @Column(name = "id", nullable = false, unique = true)
     private static Long id;
 
-    @Column(name = "name", nullable = false, unique = true, columnDefinition = "VARCHAR(45)", length = 45)
+    @Column(name = "name", nullable = false, columnDefinition = "VARCHAR(45)", length = 45)
     private static String name;
 
     @Column(name = "email", nullable = false, unique = true, columnDefinition = "VARCHAR(45)", length = 45)
