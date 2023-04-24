@@ -8,49 +8,49 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class RobotService {
     private final RobotRepository robotRepository;
 
-    public Robot createRobot(RobotRequest robotRequest) {
-        return robotRepository.save(robotRequest.toEntity());
+    public RobotDto createRobot(RobotDto robotDto) {
+        robotRepository.save(robotDto.toEntity());
+        return robotDto;
     }
 
-    public List<Robot> getRobots() {
-        return robotRepository.findAll();
+    public List<RobotDto> getRobots() {
+        List<Robot> robots = robotRepository.findAll();
+        return robots.stream()
+                .map(RobotDto::new)
+                .collect(Collectors.toList());
     }
 
-    public Optional<Robot> getRobot(Integer RobotId) {
-        return robotRepository.findById(RobotId);
+    public Optional<RobotDto> getRobot(Integer robotId) {
+        return robotRepository.findById(robotId)
+                .map(RobotDto::new);
     }
 
-    public Optional<Robot> updateRobot(Integer robotId, RobotRequest robotRequest) {
+    public Optional<RobotDto> updateRobot(Integer robotId, RobotDto robotDto) {
         return robotRepository.findById(robotId)
                 .map(robot -> {
-                    robot.setName(robotRequest.getName());
-                    robot.setSshId(robotRequest.getSshId());
-                    robot.setSshPw(robotRequest.getSshPw());
-                    robot.setPort(robotRequest.getPort());
-                    robot.setIp(robotRequest.getIp());
-                    robot.setType(robotRequest.getType());
-
-                    return robotRepository.save(robot);
+                    Robot updatedRobot = robotRepository.save(robot);
+                    return new RobotDto(updatedRobot);
                 });
     }
 
-    public void deleteRobot(Integer RobotId) {
-        robotRepository.findById(RobotId)
+    public void deleteRobot(Integer robotId) {
+        robotRepository.findById(robotId)
                 .ifPresent(robotRepository::delete);
     }
 
-    public boolean testSshConnection(RobotRequest robotRequest) {
+    public boolean testSshConnection(RobotDto robotDto) {
         JSch jsch = new JSch();
         Session session = null;
         try {
-            session = jsch.getSession(robotRequest.getSshId(), robotRequest.getIp(), robotRequest.getPort());
-            session.setPassword(robotRequest.getSshPw());
+            session = jsch.getSession(robotDto.getSshId(), robotDto.getIp(), robotDto.getPort());
+            session.setPassword(robotDto.getSshPw());
             session.setConfig("StrictHostKeyChecking", "no");
             session.connect();
             return true;

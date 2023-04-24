@@ -1,15 +1,10 @@
 package com.cnu.simple.robot;
 
 import com.cnu.simple.work.WorkSpecification;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.Session;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Entity
@@ -22,35 +17,29 @@ public class Robot {
     private Long id;
 
     @Column(name = "name")
-    @Setter
     private String name;
 
     @Column(name = "SSH_Id")
-    @Setter
     private String sshId;
 
     @Column(name = "SSH_PW")
-    @Setter
     private String sshPw;
 
     @Column(name = "port")
-    @Setter
     private int port;
 
-    @OneToMany
-    @JoinColumn(name = "work_spec_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "robot")
     private List<WorkSpecification> workSpecifications;
 
     @Column(name = "IP")
-    @Setter
     private String ip;
 
     @Column(name = "type")
-    @Setter
     private String type;
 
     @Builder
-    public Robot(String name, String sshId, String sshPw, int port, String ip, String type) {
+    public Robot(Long id,String name, String sshId, String sshPw, int port, String ip, String type) {
+        this.id = id;
         this.name = name;
         this.sshId = sshId;
         this.sshPw = sshPw;

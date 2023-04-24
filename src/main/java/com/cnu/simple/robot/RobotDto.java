@@ -1,33 +1,21 @@
 package com.cnu.simple.robot;
 
-import com.cnu.simple.work.WorkSpecification;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.Session;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import lombok.Builder;
 import lombok.Getter;
 
-import java.util.List;
-import java.util.UUID;
-
 @Getter
-public class RobotRequest {
+public class RobotDto {
+    private Long id;
     private String name;
-
     private String sshId;
-
     private String sshPw;
-
     private int port;
-
-    private List<WorkSpecification> workSpecifications;
     private String ip;
     private String type;
 
     public Robot toEntity() {
         return Robot.builder()
+                .id(id)
                 .name(name)
                 .sshId(sshId)
                 .sshPw(sshPw)
@@ -35,5 +23,15 @@ public class RobotRequest {
                 .ip(ip)
                 .type(type)
                 .build();
+    }
+
+    public RobotDto(Robot robot) {
+        this.id = robot.getId();
+        this.name = robot.getName();
+        this.sshId = robot.getSshId();
+        this.sshPw = robot.getSshPw();
+        this.port = robot.getPort();
+        this.ip = robot.getIp();
+        this.type = robot.getType();
     }
 }
