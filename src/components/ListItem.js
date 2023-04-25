@@ -37,11 +37,13 @@ const ListItem = ({ type, ...props }) => {
       </ListItemWrapper>
     );
   } else if (type === "task") {
-    const { name, task, memo, id } = props;
+    const { name, schedule, memo, id } = props;
     return (
       <ListItemWrapper data-id={id}>
         <Item>{name}</Item>
-        <Item>{task}</Item>
+        <Item>{`${schedule.startDate} ${schedule.startTime}부터 ${
+          schedule.repeatDay / 24
+        }일마다  `}</Item>
         <Item>{memo}</Item>
         <Item>
           <TrashIcon />
