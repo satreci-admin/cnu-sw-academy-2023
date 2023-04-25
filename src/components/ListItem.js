@@ -10,6 +10,7 @@ const Item = styled.span`
   margin-right: 20px;
   display: inline-block;
   text-align: center;
+  cursor: pointer;
 `;
 
 const TrashIcon = styled(FiTrash2)`
