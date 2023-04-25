@@ -1,6 +1,7 @@
 import React, { useState, memo, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
+import { FiSettings, FiCalendar, FiUsers } from "react-icons/fi";
 import styled from "styled-components";
 
 const SideBarWrapper = styled.div`
@@ -55,6 +56,13 @@ function Sidebars() {
               active={menu.path === click ? "true" : "false"}
               onClick={() => handleClick(menu.path)}
             >
+              {idx === 0 ? (
+                <FiSettings style={{ marginRight: "10px" }} />
+              ) : idx === 1 ? (
+                <FiCalendar style={{ marginRight: "10px" }} />
+              ) : (
+                <FiUsers style={{ marginRight: "10px" }} />
+              )}
               {menu.name}
             </MemoStyledLink>
           ))}
