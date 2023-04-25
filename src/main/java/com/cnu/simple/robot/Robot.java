@@ -2,18 +2,19 @@ package com.cnu.simple.robot;
 
 import com.cnu.simple.work.WorkSpecification;
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.*;
 
-import java.util.UUID;
+import java.util.List;
 
+@Getter
 @Entity
 @Table(name = "robots")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Robot {
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, unique = true, columnDefinition = "BINARY(16)")
-    private UUID id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -27,13 +28,23 @@ public class Robot {
     @Column(name = "port")
     private int port;
 
-    @ManyToOne
-    @JoinColumn(name = "work_spec_id", referencedColumnName = "id")
-    private WorkSpecification workSpecification;
+    @OneToMany(mappedBy = "robot")
+    private List<WorkSpecification> workSpecifications;
 
     @Column(name = "IP")
     private String ip;
 
-    @Column(name = "memo")
-    private String memo;
+    @Column(name = "type")
+    private String type;
+
+    @Builder
+    public Robot(Long id,String name, String sshId, String sshPw, int port, String ip, String type) {
+        this.id = id;
+        this.name = name;
+        this.sshId = sshId;
+        this.sshPw = sshPw;
+        this.port = port;
+        this.ip = ip;
+        this.type = type;
+    }
 }
