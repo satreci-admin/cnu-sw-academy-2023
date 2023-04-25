@@ -1,6 +1,8 @@
 import React from "react";
 import MainContentWrapper from "../components/MainContentWrapper";
 import Header from "../components/Header";
+import List from "../components/List";
+import { DUMMYRobot } from "../DUMMY";
 
 function Robot() {
   return (
@@ -9,7 +11,7 @@ function Robot() {
         mainHeader={"로봇 관리"}
         subHeader={"Supporting robot management"}
       ></Header>
-      robot
+      <List type="robot" info={DUMMYRobot.robot} />
     </MainContentWrapper>
   );
 }

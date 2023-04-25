@@ -1,6 +1,8 @@
 import React from "react";
 import MainContentWrapper from "../components/MainContentWrapper";
 import Header from "../components/Header";
+import List from "../components/List";
+import { DUMMYTask } from "../DUMMY";
 
 function Work() {
   return (
@@ -9,7 +11,7 @@ function Work() {
         mainHeader={"작업 명세서 관리"}
         subHeader={"Task specification management"}
       ></Header>
-      robot
+      <List type="task" info={DUMMYTask.tasks} />
     </MainContentWrapper>
   );
 }
