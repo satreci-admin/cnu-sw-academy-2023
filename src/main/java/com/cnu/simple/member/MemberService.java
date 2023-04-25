@@ -1,7 +1,10 @@
 package com.cnu.simple.member;
 
 import com.cnu.simple.exception.MemberNotFoundException;
+import com.cnu.simple.exception.MemberVaildateDuplicateException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,55 +16,54 @@ public class MemberService {
     @Autowired
     private MemberRepository memberRepository;
 
+    private MemberResponseDto convertEntityToDto(Member entity){
+        MemberResponseDto response = new MemberResponseDto();
+        BeanUtils.copyProperties(entity, response);
+        return response;
+    }
 
-    public Member save(MemberRequestDto memberRequestDto) {
+    public MemberResponseDto saveMember(MemberRequestDto memberRequestDto) throws MemberVaildateDuplicateException {
         vaildateDuplicateMember(memberRequestDto);
-
-        MemberRequestDto member = MemberRequestDto.builder()
-                .id(memberRequestDto.getId())
-                .name(memberRequestDto.getName())
-                .email(memberRequestDto.getEmail())
-                .password(memberRequestDto.getPassword())
-                .workSpecifications(memberRequestDto.getWorkSpecifications())
-                .build();
-
-        return memberRepository.save(memberRequestDto.toEntity());
+        Member saved = memberRepository.save(memberRequestDto.toEntity());
+        return convertEntityToDto(saved);
     }
 
-    private void vaildateDuplicateMember(MemberRequestDto memberRequestDto) {
-        memberRepository.findById(memberRequestDto.getId())
-                .ifPresent(m -> {
-                    throw new IllegalStateException("이미 존재하는 회원입니다.");
-                });
+    private void vaildateDuplicateMember(MemberRequestDto memberRequestDto) throws MemberVaildateDuplicateException {
+      Member findMember = memberRepository.findByEmail(memberRequestDto.getEmail());
+        if(findMember != null) {
+            throw new MemberVaildateDuplicateException("이미 존재하는 회원입니다.");
+        }
     }
 
-    public List<Member> findMember() {
+    public List<Member> findMember(Pageable pageable) {
         return memberRepository.findAll();
     }
 
-    public Optional<Member> findOne(Long id) {
-        return memberRepository.findById(id);
-    }
-
-    public Member updateMember(Long id, MemberRequestDto memberRequestDto) {
-        Member member = memberRepository
-                .findById(id)
-                .orElseThrow(() -> new MemberNotFoundException("해당 id의 회원이 없습니다."));
-        Member updated = memberRepository.save(
-                Member.builder()
-                        .id(id)
-                        .name(memberRequestDto.getName())
-                        .email(memberRequestDto.getEmail())
-                        .password(memberRequestDto.getPassword())
-                        .workSpecification(memberRequestDto.getWorkSpecifications())
-                        .build()
+    public MemberResponseDto findOne(Long id) {
+       Member found = memberRepository.findById(id).orElseThrow(
+                () -> new MemberNotFoundException("아이디 " + id + "에 해당하는 회원을 찾을 수 없습니다.")
         );
 
-        return memberRepository.save(updated);
+       return convertEntityToDto(found);
+
     }
+
+    public Optional<MemberResponseDto> updateMember(Long id, MemberRequestDto memberRequestDto) {
+        return memberRepository.findById(id)
+                .map(member -> {
+                    memberRequestDto.getName();
+                    memberRequestDto.getEmail();
+                    memberRequestDto.getPassword();
+                    memberRequestDto.getWorkSpecifications();
+
+                    return convertEntityToDto(member);
+
+                });
+    }
+
+
 
     public void deleteMember(Long id) {
         memberRepository.deleteById(id);
     }
-
 }

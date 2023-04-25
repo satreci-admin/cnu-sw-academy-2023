@@ -1,7 +1,9 @@
 package com.cnu.simple.member;
 
+import com.cnu.simple.exception.MemberVaildateDuplicateException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,31 +16,34 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
-
-    @PostMapping("")
-    public ResponseEntity<Member> addMember(@RequestBody MemberRequestDto memberRequestDto) {
-        Member addMember = memberService.save(memberRequestDto);
-        return new ResponseEntity<>(addMember, HttpStatus.CREATED);
+    @PostMapping("/member")
+    public MemberResponseDto addMember(@RequestBody MemberRequestDto memberRequestDto) throws MemberVaildateDuplicateException {
+        MemberResponseDto addMember = memberService.saveMember(memberRequestDto);
+        return memberService.saveMember(memberRequestDto);
     }
 
-    @GetMapping()
-    public ResponseEntity<List<Member>> listMember(@PathVariable Long id) {
-        List<Member> listMember = memberService.findMember();
-        Optional<Member> oneMember = memberService.findOne(id);
+    @GetMapping("/members")
+    public ResponseEntity<List<Member>> listMember(@PageableDefault(size = 5) Pageable pageable) {
+        List<Member> listMember = memberService.findMember(pageable);
         return ResponseEntity.ok(listMember);
     }
 
-    @PutMapping()
-    public ResponseEntity<Member> updateMember(@PathVariable Long id,
-                                               @RequestBody MemberRequestDto memberRequestDto) {
-        Member updateMember = memberService.updateMember(id, memberRequestDto);
-        return ResponseEntity.ok(updateMember);
+    @GetMapping("/member/{id}")
+    public MemberResponseDto oneMember(@PathVariable Long id){
+        MemberResponseDto oneMember = memberService.findOne(id);
+        return memberService.findOne(oneMember.getId());
+
     }
 
-    @DeleteMapping()
-    public ResponseEntity<Member> deleteMember(@PathVariable Long id) {
+    @PutMapping("/member/{id}")
+    public Optional<MemberResponseDto> updateMember(@PathVariable Long id,
+                                                    @RequestBody MemberRequestDto memberRequestDto) {
+        Optional<MemberResponseDto> updateMember = memberService.updateMember(id, memberRequestDto);
+        return memberService.updateMember(id, memberRequestDto);
+    }
+
+    @DeleteMapping("/member/{id}")
+    public void deleteMember(@PathVariable Long id) {
         memberService.deleteMember(id);
-        return ResponseEntity.noContent().build();
     }
 }
-
