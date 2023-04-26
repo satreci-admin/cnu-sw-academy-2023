@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
+import { Button, ButtonContainer } from "./Button";
 
 const StyleInput = styled.input`
   border: none;
@@ -9,22 +10,6 @@ const StyleInput = styled.input`
   width: 420px;
   height: 50px;
   font-size: 15px;
-`;
-
-const Button = styled.button`
-  border-radius: 5px;
-  background-color: white;
-  width: 70px;
-  height: 40px;
-  font-size: 16px;
-  font-weight: 800;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 20px;
 `;
 
 const MemberInputModal = ({ isModify = false, open, onClick, ...props }) => {
