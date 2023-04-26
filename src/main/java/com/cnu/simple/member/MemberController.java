@@ -29,17 +29,22 @@ public class MemberController {
     }
 
     @GetMapping("/member/{id}")
-    public MemberResponseDto oneMember(@PathVariable UUID id){
-        MemberResponseDto oneMember = memberService.findOne(id);
-        return memberService.findOne(oneMember.getId());
+    public ResponseEntity<MemberResponseDto> oneMember(@PathVariable UUID id){
+        Optional<MemberResponseDto> memberResponseDto = memberService.findOne(id);
+        return memberResponseDto.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
 
     }
 
     @PutMapping("/member/{id}")
-    public Optional<MemberResponseDto> updateMember(@PathVariable Long id,
-                                                    @RequestBody MemberRequestDto memberRequestDto) {
-        Optional<MemberResponseDto> updateMember = memberService.updateMember(id, memberRequestDto);
-        return memberService.updateMember(id, memberRequestDto);
+    public ResponseEntity<MemberResponseDto> updateMember(@PathVariable UUID id,
+                                                          @RequestBody MemberRequestDto memberRequestDto) {
+        Optional<MemberResponseDto> modify = memberService.updateMember(id, memberRequestDto);
+        if(modify.isPresent()){
+            return ResponseEntity.ok(modify.get());
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/member/{id}")

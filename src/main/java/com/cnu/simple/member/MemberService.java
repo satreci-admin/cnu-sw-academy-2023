@@ -1,7 +1,6 @@
 package com.cnu.simple.member;
 
 import com.cnu.simple.exception.MemberNotFoundException;
-import com.cnu.simple.exception.MemberVaildateDuplicateException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -39,24 +38,26 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    public MemberResponseDto findOne(UUID id) {
-       Object found = memberRepository.findById(id);
+    public Optional<MemberResponseDto> findOne(UUID id) {
+       Member member = memberRepository.findById(id).orElseThrow(
+               () -> new MemberNotFoundException("회원 ID " + id + "에 해당하는 로봇을 찾을 수 없습니다.")
+       );
 
-       return convertEntityToDto(found);
+       return Optional.of(convertEntityToDto(member));
 
     }
 
-    public Optional<MemberResponseDto> updateMember(Long id, MemberRequestDto memberRequestDto) {
-        return memberRepository.findById(id)
-                .map(member -> {
-                    memberRequestDto.getName();
-                    memberRequestDto.getEmail();
-                    memberRequestDto.getPassword();
-                    memberRequestDto.getWorkSpecifications();
+    public Optional<MemberResponseDto> updateMember(UUID id, MemberRequestDto memberRequestDto) {
+        Member saved = memberRepository.save(
+                Member.builder()
+                        .name(memberRequestDto.getName())
+                        .email(memberRequestDto.getEmail())
+                        .password(memberRequestDto.getPassword())
+                        .workSpecification(memberRequestDto.getWorkSpecifications())
+                        .build()
 
-                    return convertEntityToDto(member);
-
-                });
+        );
+        return Optional.of(convertEntityToDto(saved));
     }
 
 
@@ -64,6 +65,4 @@ public class MemberService {
     public void deleteMember(Long id) {
         memberRepository.deleteById(id);
     }
-
-
 }
