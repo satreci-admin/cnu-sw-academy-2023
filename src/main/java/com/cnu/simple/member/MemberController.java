@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 public class MemberController {
@@ -18,7 +19,6 @@ public class MemberController {
 
     @PostMapping("/member")
     public MemberResponseDto addMember(@RequestBody MemberRequestDto memberRequestDto) throws MemberVaildateDuplicateException {
-        MemberResponseDto addMember = memberService.saveMember(memberRequestDto);
         return memberService.saveMember(memberRequestDto);
     }
 
@@ -29,7 +29,7 @@ public class MemberController {
     }
 
     @GetMapping("/member/{id}")
-    public MemberResponseDto oneMember(@PathVariable Long id){
+    public MemberResponseDto oneMember(@PathVariable UUID id){
         MemberResponseDto oneMember = memberService.findOne(id);
         return memberService.findOne(oneMember.getId());
 

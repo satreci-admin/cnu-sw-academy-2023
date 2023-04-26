@@ -3,8 +3,10 @@ package com.cnu.simple.member;
 import com.cnu.simple.work.WorkSpecification;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Entity
@@ -13,9 +15,10 @@ import java.util.List;
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false, unique = true)
-    private Long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", nullable = false, unique = true, columnDefinition = "BINARY(16)")
+    private UUID id;
 
     @Column(name = "name", nullable = false, columnDefinition = "VARCHAR(45)", length = 45)
     private String name;
@@ -30,7 +33,7 @@ public class Member {
     private List<WorkSpecification> workSpecification;
 
     @Builder
-    public Member(Long id, String name, String email, String password, List<WorkSpecification> workSpecification) {
+    public Member(UUID id, String name, String email, String password, List<WorkSpecification> workSpecification) {
         this.id = id;
         this.name = name;
         this.email = email;

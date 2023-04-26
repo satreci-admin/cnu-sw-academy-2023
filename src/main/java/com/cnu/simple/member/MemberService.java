@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class MemberService {
@@ -16,33 +17,30 @@ public class MemberService {
     @Autowired
     private MemberRepository memberRepository;
 
-    private MemberResponseDto convertEntityToDto(Member entity){
+    private MemberResponseDto convertEntityToDto(Object entity){
         MemberResponseDto response = new MemberResponseDto();
         BeanUtils.copyProperties(entity, response);
         return response;
     }
 
-    public MemberResponseDto saveMember(MemberRequestDto memberRequestDto) throws MemberVaildateDuplicateException {
-        vaildateDuplicateMember(memberRequestDto);
+    public MemberResponseDto saveMember(MemberRequestDto memberRequestDto) {
         Member saved = memberRepository.save(memberRequestDto.toEntity());
         return convertEntityToDto(saved);
     }
 
-    private void vaildateDuplicateMember(MemberRequestDto memberRequestDto) throws MemberVaildateDuplicateException {
-      Member findMember = memberRepository.findByEmail(memberRequestDto.getEmail());
-        if(findMember != null) {
-            throw new MemberVaildateDuplicateException("이미 존재하는 회원입니다.");
-        }
-    }
+//    private void vaildateDuplicateMember(MemberRequestDto memberRequestDto) throws MemberVaildateDuplicateException {
+//      Member findMember = memberRepository.findByEmail(memberRequestDto.getEmail());
+//        if(findMember != null) {
+//            throw new MemberVaildateDuplicateException("이미 존재하는 회원입니다.");
+//        }
+//    }
 
     public List<Member> findMember(Pageable pageable) {
         return memberRepository.findAll();
     }
 
-    public MemberResponseDto findOne(Long id) {
-       Member found = memberRepository.findById(id).orElseThrow(
-                () -> new MemberNotFoundException("아이디 " + id + "에 해당하는 회원을 찾을 수 없습니다.")
-        );
+    public MemberResponseDto findOne(UUID id) {
+       Object found = memberRepository.findById(id);
 
        return convertEntityToDto(found);
 
@@ -66,4 +64,6 @@ public class MemberService {
     public void deleteMember(Long id) {
         memberRepository.deleteById(id);
     }
+
+
 }
