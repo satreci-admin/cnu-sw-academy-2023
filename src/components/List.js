@@ -3,7 +3,7 @@ import ListItem from "./ListItem";
 
 const ListHeader = styled.div`
   padding: 10px 20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0);
 `;
 const Item = styled.span`
   width: 23%;
