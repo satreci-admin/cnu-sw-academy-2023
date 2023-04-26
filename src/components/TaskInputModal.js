@@ -3,15 +3,7 @@ import Modal from "react-modal";
 import styled from "styled-components";
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import { Button, ButtonContainer } from "./Button";
-
-const StyleInput = styled.input`
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  margin: 10px;
-  width: 420px;
-  height: 50px;
-  font-size: 15px;
-`;
+import StyleInput from "./StyledInput";
 
 const Label = styled.label`
   display: block;
