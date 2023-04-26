@@ -15,33 +15,33 @@ public class RobotController {
     private final RobotService robotService;
 
     @PostMapping
-    public ResponseEntity<RobotDto> createRobot(@RequestBody RobotDto robotDto) {
-        RobotDto createdRobot = robotService.createRobot(robotDto);
+    public ResponseEntity<RobotResponseDto> createRobot(@RequestBody RobotRequestDto robotRequestDto) {
+        RobotResponseDto createdRobot = robotService.createRobot(robotRequestDto);
         return new ResponseEntity<>(createdRobot, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<RobotDto>> getRobots() {
-        List<RobotDto> robotDtos = robotService.getRobots();
-        return ResponseEntity.ok(robotDtos);
+    public ResponseEntity<List<RobotResponseDto>> getRobots() {
+        List<RobotResponseDto> robotResponseDtos = robotService.getRobots();
+        return ResponseEntity.ok(robotResponseDtos);
     }
 
     @GetMapping("/{robotId}")
-    public ResponseEntity<RobotDto> getRobot(@PathVariable("robotId") Integer robotId) {
-        Optional<RobotDto> RobotRequest = robotService.getRobot(robotId);
-        if (RobotRequest.isPresent()) {
-            return ResponseEntity.ok(RobotRequest.get());
+    public ResponseEntity<RobotResponseDto> getRobot(@PathVariable("robotId") Integer robotId) {
+        Optional<RobotResponseDto> robotResponseDto = robotService.getRobot(robotId);
+        if (robotResponseDto.isPresent()) {
+            return ResponseEntity.ok(robotResponseDto.get());
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     @PutMapping("/{robotId}")
-    public ResponseEntity<RobotDto> updateRobot(@PathVariable("robotId")Integer robotId,
-                                                @RequestBody RobotDto robotDto) {
-        Optional<RobotDto> updatedRobotRequest = robotService.updateRobot(robotId, robotDto);
-        if (updatedRobotRequest.isPresent()) {
-            return ResponseEntity.ok(updatedRobotRequest.get());
+    public ResponseEntity<RobotResponseDto> updateRobot(@PathVariable("robotId")Integer robotId,
+                                                       @RequestBody RobotRequestDto robotRequestDto) {
+        Optional<RobotResponseDto> updatedRobotResponse = robotService.updateRobot(robotId, robotRequestDto);
+        if (updatedRobotResponse.isPresent()) {
+            return ResponseEntity.ok(updatedRobotResponse.get());
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -54,8 +54,8 @@ public class RobotController {
     }
 
     @PostMapping("/test/connection")
-    public ResponseEntity<Boolean> connectRobot(@RequestBody RobotDto robotDto) {
-        boolean isSuccess = robotService.testSshConnection(robotDto);
+    public ResponseEntity<Boolean> connectRobot(@RequestBody RobotRequestDto robotRequestDto) {
+        boolean isSuccess = robotService.testSshConnection(robotRequestDto);
         if (isSuccess) {
             return ResponseEntity.ok(true);
         } else {

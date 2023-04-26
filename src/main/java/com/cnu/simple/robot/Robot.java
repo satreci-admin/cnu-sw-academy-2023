@@ -6,14 +6,16 @@ import lombok.*;
 
 import java.util.List;
 
+@Builder
 @Getter
 @Entity
 @Table(name = "robots")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Robot {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false, unique = true, columnDefinition = "BINARY(16)")
+    @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
     @Column(name = "name")
@@ -36,15 +38,4 @@ public class Robot {
 
     @Column(name = "type")
     private String type;
-
-    @Builder
-    public Robot(Long id,String name, String sshId, String sshPw, int port, String ip, String type) {
-        this.id = id;
-        this.name = name;
-        this.sshId = sshId;
-        this.sshPw = sshPw;
-        this.port = port;
-        this.ip = ip;
-        this.type = type;
-    }
 }

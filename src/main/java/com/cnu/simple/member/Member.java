@@ -16,19 +16,19 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false, unique = true)
-    private static Long id;
+    private Long id;
 
     @Column(name = "name", nullable = false, unique = true, columnDefinition = "VARCHAR(45)", length = 45)
-    private static String name;
+    private String name;
 
     @Column(name = "email", nullable = false, unique = true, columnDefinition = "VARCHAR(45)", length = 45)
-    private static String email;
+    private String email;
 
     @Column(name = "password", nullable = false, columnDefinition = "")
-    private static String password;
+    private String password;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private static List<WorkSpecification> workSpecification;
+    private List<WorkSpecification> workSpecification;
 
     @Builder
     public Member(Long id, String name, String email, String password, List<WorkSpecification> workSpecification) {
