@@ -144,9 +144,14 @@ const InputModal = ({ isModify = false, open, onClick, ...props }) => {
         placeholder="Port"
         name="port"
         type="number"
+        min={0}
         value={port}
         onChange={(e) => {
-          setPort(e.target.value);
+          if (e.target.value < 0) {
+            setPort("");
+          } else {
+            setPort(e.target.value);
+          }
           setIsConnectionTestPassed(false);
         }}
       />

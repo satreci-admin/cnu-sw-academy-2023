@@ -140,9 +140,14 @@ const TaskInputModal = ({ isModify = false, open, onClick, ...props }) => {
             placeholder="반복 주기(일)"
             name="repetition"
             type="number"
+            min={0}
             value={repetition}
             onChange={(e) => {
-              setRepetition(e.target.value);
+              if (e.target.value < 0) {
+                setRepetition(0);
+              } else {
+                setRepetition(e.target.value);
+              }
             }}
           />
         </InputsContainer>
