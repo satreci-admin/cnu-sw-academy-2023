@@ -14,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberResponseDto {
+
     private UUID id;
     private String name;
     private String email;

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="08367239-d9ac-4e7f-8ae4-237c131960a0" name="Changes" comment="feat: Member API 수정">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/exception/WorkSpecificationNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/member/MemberListResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/robot/RobotController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/robot/RobotRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/robot/RobotRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/robot/RobotResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/robot/RobotService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/work/Schedule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/work/WorkSpecRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/work/WorkSpecResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/work/WorkSpecificationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/work/WorkSpecificationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/work/WorkSpecificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/work/deprecated/Crawling.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/work/deprecated/TaskType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cnu/simple/member/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/member/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cnu/simple/member/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/member/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cnu/simple/member/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/member/MemberRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cnu/simple/member/MemberRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/member/MemberRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cnu/simple/member/MemberResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/member/MemberResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cnu/simple/member/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/member/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cnu/simple/robot/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/robot/Robot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cnu/simple/work/TaskDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/work/deprecated/TaskDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cnu/simple/work/TaskType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cnu/simple/work/WorkSpecification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cnu/simple/work/WorkSpecification.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2O2PZrL0gf9JmUSgp829FMCKKp6" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/beautiflow/workspace/CNUSW_2/cnu-sw-academy-2023&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MTConfigurable&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;dc27e79ebf334d1a41b2a84887563a7b&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.cnu.simple.member" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.cnu.simple.work.crawling" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="SimpleRpaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="SimpleRPA" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cnu.simple.SimpleRpaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="08367239-d9ac-4e7f-8ae4-237c131960a0" name="Changes" comment="" />
+      <created>1680755761681</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680755761681</updated>
+      <workItem from="1680755763015" duration="2392000" />
+      <workItem from="1681352139803" duration="9019000" />
+      <workItem from="1681518003103" duration="148000" />
+      <workItem from="1681518749142" duration="51000" />
+      <workItem from="1681518875807" duration="4926000" />
+      <workItem from="1681648766580" duration="17704000" />
+      <workItem from="1681776404116" duration="98000" />
+      <workItem from="1681776513449" duration="1766000" />
+      <workItem from="1681856990099" duration="1215000" />
+      <workItem from="1682048475972" duration="6080000" />
+      <workItem from="1682064169898" duration="9232000" />
+      <workItem from="1682228807845" duration="761000" />
+      <workItem from="1682338978496" duration="11000" />
+      <workItem from="1682338994931" duration="11000" />
+      <workItem from="1682396989381" duration="6107000" />
+      <workItem from="1682464623070" duration="14629000" />
+      <workItem from="1682680913961" duration="3059000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat: Member, Crawling, NewsSite, ReceiveEmail 엔티티 수정 및 등록">
+      <created>1680757995398</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1680757995398</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: Member 엔티티 수정">
+      <created>1681775587947</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681775587947</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: MemberRepository, MemberListResponseDto, MemberResponseDto, MemberRequestDto 클래스 추가">
+      <created>1681775802569</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1681775802569</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: Member 예외처리 클래스 추가">
+      <created>1681775874862</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681775874862</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: Member 등록">
+      <created>1681776312552</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1681776312552</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat: Member 조회">
+      <created>1681776431399</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1681776431399</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: Member 수정">
+      <created>1681776474064</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1681776474064</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: Member 삭제">
+      <created>1681776550480</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1681776550480</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: ReceiceEmail id 타입 수정">
+      <created>1681776610153</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1681776610153</updated>
+    </task>
+    <task id="LOCAL-00010" summary="chore: 공백 삭제">
+      <created>1681776787101</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1681776787101</updated>
+    </task>
+    <task id="LOCAL-00011" summary="chore: 크롤링, NewsSite 클래스 삭제">
+      <created>1681777937548</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1681777937548</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat: Member name unique 속성 삭제">
+      <created>1682048927678</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1682048927678</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat: Member API 수정">
+      <created>1682398694745</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1682398694745</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat: Member API 수정">
+      <created>1682489085290</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1682489085290</updated>
+    </task>
+    <task id="LOCAL-00015" summary="feat: Member API 수정">
+      <created>1682494351246</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1682494351246</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: Member, Crawling, NewsSite, ReceiveEmail 엔티티 수정 및 등록" />
+    <MESSAGE value="feat: Member 엔티티 수정" />
+    <MESSAGE value="feat: MemberRepository, MemberListResponseDto, MemberResponseDto, MemberRequestDto 클래스 추가" />
+    <MESSAGE value="feat: Member 예외처리 클래스 추가" />
+    <MESSAGE value="feat: Member 등록" />
+    <MESSAGE value="feat: Member 조회" />
+    <MESSAGE value="feat: Member 수정" />
+    <MESSAGE value="feat: Member 삭제" />
+    <MESSAGE value="feat: ReceiceEmail id 타입 수정" />
+    <MESSAGE value="chore: 공백 삭제" />
+    <MESSAGE value="chore: 크롤링, NewsSite 클래스 삭제" />
+    <MESSAGE value="feat: Member name unique 속성 삭제" />
+    <MESSAGE value="feat: Member API 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Member API 수정" />
+  </component>
+</project>

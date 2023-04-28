@@ -1,5 +1,6 @@
 package com.cnu.simple.member;
 
+
 import com.cnu.simple.exception.MemberVaildateDuplicateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
 
 @RestController
 public class MemberController {
@@ -52,3 +54,4 @@ public class MemberController {
         memberService.deleteMember(id);
     }
 }
+

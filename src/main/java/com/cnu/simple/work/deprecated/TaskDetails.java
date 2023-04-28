@@ -1,5 +1,6 @@
-package com.cnu.simple.work;
+package com.cnu.simple.work.deprecated;
 
+import com.cnu.simple.work.WorkSpecification;
 import jakarta.persistence.*;
 import lombok.Getter;
 import org.hibernate.annotations.GenericGenerator;
