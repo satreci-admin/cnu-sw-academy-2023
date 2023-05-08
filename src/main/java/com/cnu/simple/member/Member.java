@@ -8,10 +8,12 @@ import org.hibernate.annotations.GenericGenerator;
 import java.util.List;
 import java.util.UUID;
 
+@Builder
 @Getter
 @Entity
 @Table(name = "member")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Member {
 
     @Id
@@ -31,13 +33,4 @@ public class Member {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<WorkSpecification> workSpecification;
-
-    @Builder
-    public Member(UUID id, String name, String email, String password, List<WorkSpecification> workSpecification) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.workSpecification = workSpecification;
-    }
 }

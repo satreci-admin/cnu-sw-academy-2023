@@ -5,21 +5,17 @@ import com.cnu.simple.work.WorkSpecification;
 import lombok.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class MemberRequestDto {
     private String name;
     private String email;
     private String password;
 
-    @Builder
-    public MemberRequestDto(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
 
     public Member toEntity() {
         return Member.builder()
