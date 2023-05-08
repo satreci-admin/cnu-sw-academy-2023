@@ -15,25 +15,23 @@ public class MemberService {
 
 
     public Member save(MemberRequestDto memberRequestDto) {
-        vaildateDuplicateMember(memberRequestDto);
+//        vaildateDuplicateMember(memberRequestDto);
 
         MemberRequestDto member = MemberRequestDto.builder()
-                .id(memberRequestDto.getId())
                 .name(memberRequestDto.getName())
                 .email(memberRequestDto.getEmail())
                 .password(memberRequestDto.getPassword())
-                .workSpecifications(memberRequestDto.getWorkSpecifications())
                 .build();
 
         return memberRepository.save(memberRequestDto.toEntity());
     }
 
-    private void vaildateDuplicateMember(MemberRequestDto memberRequestDto) {
-        memberRepository.findById(memberRequestDto.getId())
-                .ifPresent(m -> {
-                    throw new IllegalStateException("이미 존재하는 회원입니다.");
-                });
-    }
+//    private void vaildateDuplicateMember(MemberRequestDto memberRequestDto) {
+//        memberRepository.findById(memberRequestDto.getId())
+//                .ifPresent(m -> {
+//                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+//                });
+//    }
 
     public List<Member> findMember() {
         return memberRepository.findAll();
@@ -53,7 +51,7 @@ public class MemberService {
                         .name(memberRequestDto.getName())
                         .email(memberRequestDto.getEmail())
                         .password(memberRequestDto.getPassword())
-                        .workSpecification(memberRequestDto.getWorkSpecifications())
+//                        .workSpecification(memberRequestDto.getWorkSpecifications())
                         .build()
         );
 

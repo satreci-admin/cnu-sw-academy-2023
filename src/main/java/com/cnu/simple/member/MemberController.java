@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/member")
 public class MemberController {
 
     @Autowired
@@ -21,21 +22,21 @@ public class MemberController {
         return new ResponseEntity<>(addMember, HttpStatus.CREATED);
     }
 
-    @GetMapping()
+    @GetMapping("")
     public ResponseEntity<List<Member>> listMember(@PathVariable Long id) {
         List<Member> listMember = memberService.findMember();
         Optional<Member> oneMember = memberService.findOne(id);
         return ResponseEntity.ok(listMember);
     }
 
-    @PutMapping()
+    @PutMapping("")
     public ResponseEntity<Member> updateMember(@PathVariable Long id,
                                                @RequestBody MemberRequestDto memberRequestDto) {
         Member updateMember = memberService.updateMember(id, memberRequestDto);
         return ResponseEntity.ok(updateMember);
     }
 
-    @DeleteMapping()
+    @DeleteMapping("")
     public ResponseEntity<Member> deleteMember(@PathVariable Long id) {
         memberService.deleteMember(id);
         return ResponseEntity.noContent().build();

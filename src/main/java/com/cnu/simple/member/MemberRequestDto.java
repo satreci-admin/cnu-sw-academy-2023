@@ -10,28 +10,22 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class MemberRequestDto {
-    private Long id;
     private String name;
     private String email;
     private String password;
-    private List<WorkSpecification> workSpecifications;
 
     @Builder
-    public MemberRequestDto(Long id, String name, String email, String password, List<WorkSpecification> workSpecifications) {
-        this.id = id;
+    public MemberRequestDto(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.workSpecifications = workSpecifications;
     }
 
     public Member toEntity() {
         return Member.builder()
-                .id(this.id)
                 .name(this.name)
                 .email(this.email)
                 .password(this.password)
-                .workSpecification(this.workSpecifications)
                 .build();
     }
 }
