@@ -7,9 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/task")
+@RequestMapping("/task")
 public class WorkSpecificationController {
 
     @Autowired
@@ -38,6 +39,12 @@ public class WorkSpecificationController {
     public ApiResponse<List<WorkSpecResponseDto>> getAllWrokSpec(){
         return ApiResponse.ok(
                 workService.getAllWorkSpec()
+        );
+    }
+    @GetMapping("/all/{memberId}")
+    public ApiResponse<List<WorkSpecResponseDto>> getWorkSpecByMemberId(@PathVariable("memberId") UUID memberId){
+        return ApiResponse.ok(
+                workService.getWorkSpecByMemberId(memberId)
         );
     }
 

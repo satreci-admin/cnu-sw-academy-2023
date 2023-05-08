@@ -1,39 +1,46 @@
 package com.cnu.simple.work;
 
+import com.cnu.simple.exception.MemberNotFoundException;
 import com.cnu.simple.exception.WorkSpecificationNotFoundException;
+import com.cnu.simple.member.Member;
+import com.cnu.simple.member.MemberRepository;
+import com.cnu.simple.robot.RobotRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class WorkSpecificationService {
 
-    @Autowired
-    private WorkSpecificationRepository workRepository;
+    private final WorkSpecificationRepository workRepository;
+    private final MemberRepository memberRepository;
+    private final RobotRepository robotRepository;
 
-//    @Autowired
-//    private MemberRepository memberRepository;
     private WorkSpecResponseDto convertEntityToDto(WorkSpecification entity){
         WorkSpecResponseDto response = new WorkSpecResponseDto();
-        BeanUtils.copyProperties(entity, response, "schedule");
-        response.setSchedule(Schedule.getScheduleFromCrone(entity.getSchedule()));
+        BeanUtils.copyProperties(entity, response);
         return response;
     }
 
     public WorkSpecResponseDto addWorkSpec(WorkSpecRequestDto workSpecRequestDto) {
+        Member member = memberRepository.findById(workSpecRequestDto.getMemberId()).orElseThrow(MemberNotFoundException::new);
         WorkSpecification workSpecification = WorkSpecification.builder()
                 .name(workSpecRequestDto.getName())
                 .memo(workSpecRequestDto.getMemo())
-                .schedule(workSpecRequestDto.getSchedule().getCrone())
-                /**
-                 * 멤버, 로봇 설정 부분 추가해야 함
-                 * */
+                .script(workSpecRequestDto.getScript())
+                .member(member)
                 .build();
         WorkSpecification saved = workRepository.save(workSpecification);
-//        로봇 설정 부분 추가
+        log.info("saved workSpec -> {}", saved);
         return convertEntityToDto(saved);
     }
 
@@ -61,9 +68,8 @@ public class WorkSpecificationService {
                         .id(id)
                         .name(workSpecRequestDto.getName())
                         .memo(workSpecRequestDto.getMemo())
-                        .schedule(workSpecRequestDto.getSchedule().getCrone())
                         .member(found.getMember())
-                        .robot(found.getRobot())
+                        .script(workSpecRequestDto.getScript())
                         .build()
         );
         return convertEntityToDto(saved);
@@ -71,5 +77,12 @@ public class WorkSpecificationService {
 
     public void removeWorkSpec(Long id) {
         workRepository.deleteById(id);
+    }
+
+
+    public List<WorkSpecResponseDto> getWorkSpecByMemberId(UUID memberId) {
+        return workRepository.findAllByMemberId(memberId).stream().map(
+                this::convertEntityToDto
+        ).collect(Collectors.toList());
     }
 }

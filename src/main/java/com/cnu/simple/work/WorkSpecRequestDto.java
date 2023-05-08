@@ -1,12 +1,10 @@
 package com.cnu.simple.work;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
+@ToString
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,7 +12,6 @@ import java.util.UUID;
 public class WorkSpecRequestDto {
     private String name;
     private String memo;
-    private Schedule schedule;
     private String script;
     private UUID memberId;
 }
