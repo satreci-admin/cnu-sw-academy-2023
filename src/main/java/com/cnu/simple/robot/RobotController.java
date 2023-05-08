@@ -27,7 +27,7 @@ public class RobotController {
     }
 
     @GetMapping("/{robotId}")
-    public ResponseEntity<RobotResponseDto> getRobot(@PathVariable("robotId") Integer robotId) {
+    public ResponseEntity<RobotResponseDto> getRobot(@PathVariable("robotId") Long robotId) {
         Optional<RobotResponseDto> robotResponseDto = robotService.getRobot(robotId);
         if (robotResponseDto.isPresent()) {
             return ResponseEntity.ok(robotResponseDto.get());
@@ -37,7 +37,7 @@ public class RobotController {
     }
 
     @PutMapping("/{robotId}")
-    public ResponseEntity<RobotResponseDto> updateRobot(@PathVariable("robotId")Integer robotId,
+    public ResponseEntity<RobotResponseDto> updateRobot(@PathVariable("robotId") Long robotId,
                                                        @RequestBody RobotRequestDto robotRequestDto) {
         Optional<RobotResponseDto> updatedRobotResponse = robotService.updateRobot(robotId, robotRequestDto);
         if (updatedRobotResponse.isPresent()) {
@@ -48,7 +48,7 @@ public class RobotController {
     }
 
     @DeleteMapping("/{robotId}")
-    public ResponseEntity<Void> deleteRobot(@PathVariable("robotId") Integer robotId) {
+    public ResponseEntity<Void> deleteRobot(@PathVariable("robotId") Long robotId) {
         robotService.deleteRobot(robotId);
         return ResponseEntity.noContent().build();
     }

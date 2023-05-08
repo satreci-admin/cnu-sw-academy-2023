@@ -8,13 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RobotRequestDto {
-    private Long id;
     private String name;
     private String sshId;
     private String sshPw;
     private int port;
     private String ip;
-    private String type;
 
     public Robot toEntity() {
         return Robot.builder()
@@ -23,7 +21,6 @@ public class RobotRequestDto {
                 .sshPw(sshPw)
                 .port(port)
                 .ip(ip)
-                .type(type)
                 .build();
     }
 }

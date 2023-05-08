@@ -1,10 +1,8 @@
 package com.cnu.simple.robot;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+@ToString
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,5 +13,4 @@ public class RobotResponseDto {
     private String sshPw;
     private int port;
     private String ip;
-    private String type;
 }

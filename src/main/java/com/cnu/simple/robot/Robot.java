@@ -30,12 +30,6 @@ public class Robot {
     @Column(name = "port")
     private int port;
 
-    @OneToMany(mappedBy = "robot")
-    private List<WorkSpecification> workSpecifications;
-
     @Column(name = "IP")
     private String ip;
-
-    @Column(name = "type")
-    private String type;
 }

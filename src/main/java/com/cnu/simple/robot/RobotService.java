@@ -1,9 +1,6 @@
 package com.cnu.simple.robot;
 
-import com.cnu.simple.exception.WorkSpecificationNotFoundException;
-import com.cnu.simple.work.Schedule;
-import com.cnu.simple.work.WorkSpecResponseDto;
-import com.cnu.simple.work.WorkSpecification;
+import com.cnu.simple.exception.RobotNotFoundException;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
@@ -37,34 +34,32 @@ public class RobotService {
                 .collect(Collectors.toList());
     }
 
-    public Optional<RobotResponseDto> getRobot(Integer robotId) {
+    public Optional<RobotResponseDto> getRobot(Long robotId) {
         Robot robot = robotRepository.findById(robotId).orElseThrow(
-                        () -> new WorkSpecificationNotFoundException("로봇 ID  " + robotId + "에 해당하는 로봇을 찾을 수 없습니다.")
+                        () -> new RobotNotFoundException("로봇 ID  " + robotId + "에 해당하는 로봇을 찾을 수 없습니다.")
                 );
         return Optional.of(convertEntityToDto(robot));
     }
 
-    public Optional<RobotResponseDto> updateRobot(Integer robotId, RobotRequestDto robotRequestDto) {
+    public Optional<RobotResponseDto> updateRobot(Long robotId, RobotRequestDto robotRequestDto) {
         Robot robot = robotRepository.findById(robotId).orElseThrow(
-                () -> new WorkSpecificationNotFoundException("로봇 ID  " + robotId + "에 해당하는 로봇을 찾을 수 없습니다.")
+                () -> new RobotNotFoundException("로봇 ID  " + robotId + "에 해당하는 로봇을 찾을 수 없습니다.")
         );
 
         Robot saved = robotRepository.save(
                 Robot.builder()
-                        .id(Long.valueOf(robotId))
+                        .id(robotId)
                         .name(robotRequestDto.getName())
                         .ip(robotRequestDto.getIp())
                         .port(robotRequestDto.getPort())
                         .sshId(robotRequestDto.getSshId())
                         .sshPw(robotRequestDto.getSshPw())
-                        .type(robotRequestDto.getType())
-                        .workSpecifications(robotRequestDto.toEntity().getWorkSpecifications())
                         .build()
         );
         return Optional.of(convertEntityToDto(saved));
     }
 
-    public void deleteRobot(Integer robotId) {
+    public void deleteRobot(Long robotId) {
         robotRepository.findById(robotId)
                 .ifPresent(robotRepository::delete);
     }
